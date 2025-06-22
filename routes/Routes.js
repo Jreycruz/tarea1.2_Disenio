@@ -1,8 +1,9 @@
 import express from 'express';
-import { getProductosDisponibles } from '../controllers/controller.js';
+import { getTodos, getDisponibles } from '../controllers/controller.js';
 
 const router = express.Router();
 
-router.get('/', getProductosDisponibles);
+router.get('/', getTodos);
+router.get('/disponibles', getDisponibles);
 
 export default router;
