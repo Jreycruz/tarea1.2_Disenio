@@ -89,3 +89,18 @@ export function actualizarProducto(req, res) {
   fs.writeFileSync(filePath, JSON.stringify(productos, null, 2));
   res.json(producto);
 }
+
+export function eliminarProducto(req, res) {
+  const productos = JSON.parse(fs.readFileSync(filePath, 'utf-8'));
+  const id = parseInt(req.params.id);
+  const index = productos.findIndex(p => p.id === id);
+
+  if (index === -1) {
+    return res.status(404).json({ mensaje: 'Producto no encontrado.' });
+  }
+
+  const eliminado = productos.splice(index, 1)[0];
+  fs.writeFileSync(filePath, JSON.stringify(productos, null, 2));
+
+  res.json({ mensaje: 'Producto eliminado.', producto: eliminado });
+}

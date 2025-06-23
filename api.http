@@ -23,3 +23,18 @@ Content-Type: application/json
   "descripcion": "Pantalon Jean oscuro.",
   "disponible": false
 }
+
+
+### Actualizar producto con ID
+PUT http://localhost:3000/productos/1
+Content-Type: application/json
+
+{
+  "nombre": "Producto actualizado",
+  "precio": 75.5,
+  "descripcion": "Este producto fue actualizado correctamente.",
+  "disponible": true
+}
+
+### Eliminar producto con ID 
+DELETE http://localhost:3000/productos/1
