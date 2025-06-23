@@ -65,3 +65,27 @@ export function crearProducto(req, res) {
 
   res.status(201).json(nuevo);
 }
+
+export function actualizarProducto(req, res) {
+  const productos = JSON.parse(fs.readFileSync(filePath, 'utf-8'));
+  const id = parseInt(req.params.id);
+  const producto = productos.find(p => p.id === id);
+
+  if (!producto) {
+    return res.status(404).json({ mensaje: 'Producto no encontrado.' });
+  }
+
+  const nuevo = req.body;
+
+  if (!nuevo.nombre || nuevo.precio <= 0 || !nuevo.descripcion || nuevo.descripcion.length < 10 || typeof nuevo.disponible !== 'boolean') {
+    return res.status(400).json({ mensaje: 'Datos inválidos.' });
+  }
+
+  producto.nombre = nuevo.nombre;
+  producto.precio = nuevo.precio;
+  producto.descripcion = nuevo.descripcion;
+  producto.disponible = nuevo.disponible;
+
+  fs.writeFileSync(filePath, JSON.stringify(productos, null, 2));
+  res.json(producto);
+}

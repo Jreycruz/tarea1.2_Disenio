@@ -1,8 +1,8 @@
 [
   {
-    "nombre": "Camisa nueva",
-    "precio": 25.5,
-    "descripcion": "Camisa de algodón 100%, cómoda y fresca.",
+    "nombre": "Producto actualizado",
+    "precio": 75.5,
+    "descripcion": "Este producto fue actualizado correctamente.",
     "disponible": true,
     "id": 1,
     "fecha_ingreso": "2025-06-23T00:08:18.597Z"
