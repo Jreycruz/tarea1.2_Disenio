@@ -48,3 +48,20 @@ export function getPorId(req, res) {
 
   res.json(producto);
 }
+
+export function crearProducto(req, res) {
+  const productos = JSON.parse(fs.readFileSync(filePath, 'utf-8'));
+  const nuevo = req.body;
+
+  if (!nuevo.nombre || nuevo.precio <= 0 || !nuevo.descripcion || nuevo.descripcion.length < 10 || typeof nuevo.disponible !== 'boolean') {
+    return res.status(400).json({ mensaje: 'Datos inválidos.' });
+  }
+
+  nuevo.id = productos.length > 0 ? productos[productos.length - 1].id + 1 : 1;
+  nuevo.fecha_ingreso = new Date().toISOString();
+
+  productos.push(nuevo);
+  fs.writeFileSync(filePath, JSON.stringify(productos, null, 2));
+
+  res.status(201).json(nuevo);
+}

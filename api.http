@@ -10,3 +10,16 @@ GET http://localhost:3000/productos/disponibles
 ### Obtener producto por ID
 
 GET http://localhost:3000/productos/2
+
+
+### Crear nuevo producto válido
+
+POST http://localhost:3000/productos
+Content-Type: application/json
+
+{
+  "nombre": "Pantalon",
+  "precio": 35.0,
+  "descripcion": "Pantalon Jean oscuro.",
+  "disponible": false
+}
